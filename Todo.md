@@ -1,6 +1,6 @@
 # Todo List
 
-| To-Do           | In-Progress     | Completed       |
+| Task            | Assignee        | Status          |
 | --------------- | --------------- | --------------- |
 |                 |                 |                 |
 |                 |                 |                 |
