@@ -46,42 +46,42 @@ def interpret_query(query_cmds, query_args):
                         
                         print("'is': Used to query if a provided field is equal to some value. \n" + 
                             "Returns a list of data that the equality holds true for. \n" + 
-                            "Example: '?: artist is {Kanye}' will return all songs with the Artist 'Kayne'\n")
+                            "Example: '?: artist is \{Kanye\}' will return all songs with the Artist 'Kayne'\n")
                         
                         print("'<': Used to query a numeric field, and returns all data where the field value is less than the provided value. \n" + 
-                            "Example: '?: rank < {6}' will return the first five songs in the dataset\n")
+                            "Example: '?: rank < \{6\}' will return the first five songs in the dataset\n")
 
                         print("'>': Used to query a numeric field, and returns all data where the field value is greater than the provided value. \n" +
-                            "'Example: '?: rank > {5}' will return all songs with rank greater than five\n")
+                            "'Example: '?: rank > \{5\}' will return all songs with rank greater than five\n")
 
                         print("'of': Used to get another field of a value. \n" + 
                             "Example: '?: rank of {Good Morning}' returns the rank of the song with the Title 'Good Morning'\n")
 
                         print("'asc': Optional command, used to reverse order of data to pick from the bottom first. Default order is top down. \n" + 
-                            "Example: '?: rank > {15}, asc' will return songs of ranks 40 through 26\n")
+                            "Example: '?: rank > \{15\}, asc' will return songs of ranks 40 through 26\n")
+                        
+                        print("'exit': Used to exit out of the query program")
 
                     # TODO:
                     case 'asc':
                         print('asc')
 
                     case 'is':
-                        # gets the field being tested
-                        field = query_args[0]
-
-                        # gets the value to test for the field
-                        arg1 = query_args[1]
-
-                        # depending on the field, set the value of the object
+                        field = (arg.split(' '))[0].lower() #separates out what "is"; rank, artist, etc.
+                        searched = (arg.split(' '))[2]
                         match field:
+
                             case 'rank':
-                                query_contents.Rank = arg1
+                                query_contents.Rank = searched
+
                             case 'artist':
-                                query_contents.Artist = arg1
+                                query_contents.Artist = searched
+                            
                             case 'title':
-                                query_contents.Title = arg1
-                            case 'features':
-                                query_contents.Features = arg1
-                        
+                                query_contents.Title = searched
+
+                            case 'feature':
+                                query_contents.Features = searched
                     # TODO:
                     case '<':
                         print('<')
