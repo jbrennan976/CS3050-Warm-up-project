@@ -18,8 +18,9 @@ class Parser:
         
 # I created this class to act as an object holding info on what we're searching in the DB for
 class Query:
-    def __init__(self, Rank, Artist, Title, Features):
-        self.Rank = Rank
+    def __init__(self, Lower_Rank, Upper_Rank, Artist, Title, Features):
+        self.Lower_Rank = Lower_Rank
+        self.Upper_Rank = Upper_Rank
         self.Artist = Artist
         self.Title = Title
         self.Features = Features
@@ -29,7 +30,7 @@ class Query:
 # returns a query object containing info on fields and given values
 def interpret_query(query_cmds, query_args):
     # sets the query object
-    query_contents = Query(None, None, None, None)
+    query_contents = Query(None, 1, 40, None, None)
     for arg in query_args:
         for cmd in query_cmds:
             if arg.find(cmd) != -1:
@@ -82,13 +83,21 @@ def interpret_query(query_cmds, query_args):
                             case 'features':
                                 query_contents.Features = arg1
                         
-                    # TODO:
+                    # with the < and > tests, the field being tested will always be rank since that is the only numeric field
                     case '<':
-                        print('<')
+                        # gets the value to test for the field
+                        arg1 = query_args[1]
 
-                    # TODO:
+                        # sets the upper rank to search up to
+                        query_contents.Upper_Rank = arg1
+
+                    # with the < and > tests, the field being tested will always be rank since that is the only numeric field
                     case '>':
-                        print('>')
+                        # gets the value to test for the field
+                        arg1 = query_args[1]
+
+                        # sets the lower rank to start search from
+                        query_contents.Lower_Rank = arg1
 
                     # TODO:
                     case 'of':
