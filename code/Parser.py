@@ -106,6 +106,12 @@ def interpret_query(query_cmds, query_args):
                             # gets the value to test for the field
                             arg1 = query_args[2]
 
+                            try:
+                                arg1 = int(arg1)
+                            except:
+                                print("MUST USE AN INTEGER FOR THIS VALUE")
+                                break
+
                             # sets the upper rank to search up to
                             query_contents.Upper_Rank = int(arg1)
                         
@@ -118,6 +124,12 @@ def interpret_query(query_cmds, query_args):
                         if query_contents.Lower_Rank == None:
                             # gets the value to test for the field
                             arg1 = query_args[2]
+
+                            try:
+                                arg1 = int(arg1)
+                            except:
+                                print("MUST USE AN INTEGER FOR THIS VALUE")
+                                break
 
                             # sets the lower rank to start search from
                             query_contents.Lower_Rank = int(arg1)
