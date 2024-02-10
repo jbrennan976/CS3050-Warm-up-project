@@ -93,6 +93,10 @@ def interpret_query(query_cmds, query_args):
                     # TODO:
                     case 'of':
                         print('of')
+
+                    # TODO
+                    case 'exit':
+                        print('exit')
     
     # return the query object
     return query_contents
