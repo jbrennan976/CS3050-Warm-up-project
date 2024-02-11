@@ -3,6 +3,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 
 def initFirestone():
-    cred = credentials.Certificate('../data/team6Key.json')
+    cred = credentials.Certificate('data/team6Key.json')
     app = firebase_admin.initialize_app(cred)
     db = firestore.client()
+    return db
