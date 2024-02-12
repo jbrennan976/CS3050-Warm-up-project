@@ -116,6 +116,7 @@ def interpret_query(query_args):
                         else:
                             print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                             return None
+            
             # with the < and > tests, the field being tested will always be rank since that is the only numeric field
             case '<':
                 # Check if the upper rank has been set yet
