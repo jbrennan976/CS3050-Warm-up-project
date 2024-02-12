@@ -150,6 +150,11 @@ def interpret_query(query_args):
                     print("ERROR: CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
 
             # TODO:
+            # I'm thinking we should make it so that the user needs to specify what they are checking against in 'of'
+            # Since they can make queries like "rank of {TITLE}" and "title of {RANK}"
+            # Both are valid queries, and it may be easier if we have the user specify which field is the one they are querying
+            # Maybe something like "rank of title {Bad Romance}" to signify "Bad Romance" is a title we're searching for
+            #  -- Alex
             case 'of':
                 match field:
                     case 'rank':
