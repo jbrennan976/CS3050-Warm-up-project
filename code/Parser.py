@@ -18,19 +18,20 @@ class Parser:
         
 # I created this class to act as an object holding info on what we're searching in the DB for
 class Query:
-    def __init__(self, Lower_Rank, Upper_Rank, Artist, Title, Features):
+    def __init__(self, Lower_Rank, Upper_Rank, Artist, Title, Features, Desc):
         self.Lower_Rank = Lower_Rank
         self.Upper_Rank = Upper_Rank
         self.Artist = Artist
         self.Title = Title
         self.Features = Features
+        self.Desc = Desc
 
 # takes a list of commands and arguments after they have been split from each other
     # I designed this to seperate commands and arguments, thought it might be easer than having them combined
 # returns a query object containing info on fields and given values
 def interpret_query(query_args):
     # sets the query object
-    query_contents = Query(None, None, None, None, None)
+    query_contents = Query(None, None, None, None, None, False)
     for arg in query_args:
         field = (arg.split(' '))[0].lower() # which field is to be found
         searched = (arg.split('{')) 
@@ -67,9 +68,11 @@ def interpret_query(query_args):
                 
                 print("'exit': Used to exit out of the query program")
 
-            # TODO:
-            case 'asc':
-                print('asc')
+            # Passed to the query program to reverse the order of the database
+            # This will let us get the bottom 5 by input like: "rank < 5 desc"
+            # I changed this from 'asc' to 'desc'; I think descending makes more sense here
+            case 'desc':
+                query_contents.Desc = True
 
             case 'is':
                 match field:
