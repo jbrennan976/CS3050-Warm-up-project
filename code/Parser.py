@@ -73,6 +73,7 @@ def interpret_query(query_cmds, query_args):
 
             case 'is':
                 match field:
+                    # Finding specific rank
                     case 'rank':
                         if query_contents.Lower_Rank == None:
                             if query_contents.Upper_Rank == None:
@@ -90,6 +91,7 @@ def interpret_query(query_cmds, query_args):
                             print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                             return None
 
+                    # Finding specific artist
                     case 'artist':
                         if query_contents.Artist == None:
                             query_contents.Artist = searched
@@ -97,6 +99,7 @@ def interpret_query(query_cmds, query_args):
                             print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                             return None
                     
+                    # Finding specific title
                     case 'title':
                         if query_contents.Title == None:
                             query_contents.Title = searched
@@ -104,6 +107,7 @@ def interpret_query(query_cmds, query_args):
                             print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                             return None
 
+                    # Finding specific feature
                     case 'feature':
                         if query_contents.Features == None:
                             query_contents.Features = searched
