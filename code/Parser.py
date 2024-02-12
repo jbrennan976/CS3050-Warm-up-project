@@ -73,8 +73,13 @@ def interpret_query(query_cmds, query_args):
                         match field:
 
                             case 'rank':
-                                if query_contents.Rank == None:
-                                    query_contents.Rank = searched
+                                if query_contents.Lower_Rank == None:
+                                    if query_contents.Upper_Rank == None:
+                                        query_contents.Lower_Rank = searched
+                                        query_contents.Upper_Rank = searched
+                                    else:
+                                        print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                                        return None
                                 else:
                                     print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                                     return None
@@ -104,16 +109,16 @@ def interpret_query(query_cmds, query_args):
                         # Check if the upper rank has been set yet
                         if query_contents.Upper_Rank == None:
                             # gets the value to test for the field
-                            arg1 = query_args[2]
+                            searched = (arg.split(' '))[2]
 
                             try:
-                                arg1 = int(arg1)
+                                searched = int(searched)
                             except:
                                 print("MUST USE AN INTEGER FOR THIS VALUE")
                                 break
 
                             # sets the upper rank to search up to
-                            query_contents.Upper_Rank = int(arg1)
+                            query_contents.Upper_Rank = int(searched)
                         
                         else:
                             print("CANNOT GIVE TWO '<' VALUES FOR THE SAME FIELD")
@@ -123,16 +128,16 @@ def interpret_query(query_cmds, query_args):
                         # Check if the lower rank has been set yet
                         if query_contents.Lower_Rank == None:
                             # gets the value to test for the field
-                            arg1 = query_args[2]
+                            searched = (arg.split(' '))[2]
 
                             try:
-                                arg1 = int(arg1)
+                                searched = int(searched)
                             except:
                                 print("MUST USE AN INTEGER FOR THIS VALUE")
                                 break
 
                             # sets the lower rank to start search from
-                            query_contents.Lower_Rank = int(arg1)
+                            query_contents.Lower_Rank = int(searched)
                         
                         else:
                             print("CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
@@ -157,6 +162,6 @@ def interpret_query(query_cmds, query_args):
 
 # Using this for testing output -- Feel free to change
 query_commands = ['is', '>', '<', 'of', 'asc', 'help', 'exit']
-contents = interpret_query(query_commands, ['rank',  '<', '5'])
+contents = interpret_query(query_commands, ['rank < 5'])
 
 print(contents)
