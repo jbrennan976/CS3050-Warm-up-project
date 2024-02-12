@@ -144,7 +144,21 @@ def interpret_query(query_cmds, query_args):
 
                     # TODO:
                     case 'of':
-                        print('of')
+                        field = (arg.split(' '))[0].lower() # which field is to be found
+                        searched = (arg.split(' '))[2] # which field is known
+
+                        match field:
+                            case 'rank':
+                                pass
+
+                            case 'artist':
+                                pass
+
+                            case 'title':
+                                pass
+
+                            case 'feature':
+                                pass
 
                     # TODO
                     case 'exit':
