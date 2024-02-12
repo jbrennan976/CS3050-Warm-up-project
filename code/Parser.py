@@ -109,10 +109,11 @@ def interpret_query(query_cmds, query_args):
                         # Check if the upper rank has been set yet
                         if query_contents.Upper_Rank == None:
                             # gets the value to test for the field
-                            searched = (arg.split(' '))[2]
+                            searched = (arg.split('{'))
+                            searched = searched[1].split('}')
 
                             try:
-                                searched = int(searched)
+                                searched = int(searched[0])
                             except:
                                 print("MUST USE AN INTEGER FOR THIS VALUE")
                                 break
@@ -128,10 +129,11 @@ def interpret_query(query_cmds, query_args):
                         # Check if the lower rank has been set yet
                         if query_contents.Lower_Rank == None:
                             # gets the value to test for the field
-                            searched = (arg.split(' '))[2]
+                            searched = (arg.split('{'))
+                            searched = searched[1].split('}')
 
                             try:
-                                searched = int(searched)
+                                searched = int(searched[0])
                             except:
                                 print("MUST USE AN INTEGER FOR THIS VALUE")
                                 break
@@ -176,6 +178,6 @@ def interpret_query(query_cmds, query_args):
 
 # Using this for testing output -- Feel free to change
 query_commands = ['is', '>', '<', 'of', 'asc', 'help', 'exit']
-contents = interpret_query(query_commands, ['rank < 5'])
+contents = interpret_query(query_commands, ['rank > {5}', 'rank < {10}'])
 
 print(contents)
