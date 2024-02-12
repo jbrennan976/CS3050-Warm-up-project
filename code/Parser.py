@@ -69,7 +69,10 @@ def interpret_query(query_cmds, query_args):
 
                     case 'is':
                         field = (arg.split(' '))[0].lower() #separates out what "is"; rank, artist, etc.
-                        searched = (arg.split(' '))[2]
+                        searched = (arg.split('{'))
+                        searched = searched[1].split('}')
+                        searched = searched[0]
+
                         match field:
 
                             case 'rank':
@@ -178,6 +181,6 @@ def interpret_query(query_cmds, query_args):
 
 # Using this for testing output -- Feel free to change
 query_commands = ['is', '>', '<', 'of', 'asc', 'help', 'exit']
-contents = interpret_query(query_commands, ['rank > {5}', 'rank < {10}'])
+contents = interpret_query(query_commands, ['artist is {Taylor Swift}'])
 
 print(contents)
