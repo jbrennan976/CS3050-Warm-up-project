@@ -84,13 +84,13 @@ def interpret_query(query_args):
                                     query_contents.Upper_Rank = int(searched)
 
                                 except:
-                                    print("MUST USE AN INTEGER FOR THIS VALUE")
+                                    print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
                                     break
                             else:
-                                print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                                print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                                 return None
                         else:
-                            print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                            print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                             return None
 
                     # Finding specific artist
@@ -98,7 +98,7 @@ def interpret_query(query_args):
                         if query_contents.Artist == None:
                             query_contents.Artist = searched
                         else:
-                            print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                            print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                             return None
                     
                     # Finding specific title
@@ -106,7 +106,7 @@ def interpret_query(query_args):
                         if query_contents.Title == None:
                             query_contents.Title = searched
                         else:
-                            print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                            print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                             return None
 
                     # Finding specific feature
@@ -114,7 +114,7 @@ def interpret_query(query_args):
                         if query_contents.Features == None:
                             query_contents.Features = searched
                         else:
-                            print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                            print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                             return None
             # with the < and > tests, the field being tested will always be rank since that is the only numeric field
             case '<':
@@ -123,14 +123,14 @@ def interpret_query(query_args):
                     try:
                         searched = int(searched[0])
                     except:
-                        print("MUST USE AN INTEGER FOR THIS VALUE")
+                        print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
                         break
 
                     # sets the upper rank to search up to
                     query_contents.Upper_Rank = int(searched)
                 
                 else:
-                    print("CANNOT GIVE TWO '<' VALUES FOR THE SAME FIELD")
+                    print("ERROR: CANNOT GIVE TWO '<' VALUES FOR THE SAME FIELD")
 
             # with the < and > tests, the field being tested will always be rank since that is the only numeric field
             case '>':
@@ -139,14 +139,14 @@ def interpret_query(query_args):
                     try:
                         searched = int(searched[0])
                     except:
-                        print("MUST USE AN INTEGER FOR THIS VALUE")
+                        print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
                         break
 
                     # sets the lower rank to start search from
                     query_contents.Lower_Rank = int(searched)
                 
                 else:
-                    print("CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
+                    print("ERROR: CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
 
             # TODO:
             case 'of':
@@ -178,6 +178,6 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['rank is {Taylor Swift}'])
+contents = interpret_query(['artist is {Taylor Swift}',  'rank < {5}', 'rank < {10}'])
 
 print(contents)
