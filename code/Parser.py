@@ -78,8 +78,13 @@ def interpret_query(query_cmds, query_args):
                             case 'rank':
                                 if query_contents.Lower_Rank == None:
                                     if query_contents.Upper_Rank == None:
-                                        query_contents.Lower_Rank = searched
-                                        query_contents.Upper_Rank = searched
+                                        try:
+                                            query_contents.Lower_Rank = int(searched)
+                                            query_contents.Upper_Rank = int(searched)
+
+                                        except:
+                                            print("MUST USE AN INTEGER FOR THIS VALUE")
+                                            break
                                     else:
                                         print("CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                                         return None
