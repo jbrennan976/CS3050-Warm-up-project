@@ -28,7 +28,7 @@ class Query:
 # takes a list of commands and arguments after they have been split from each other
     # I designed this to seperate commands and arguments, thought it might be easer than having them combined
 # returns a query object containing info on fields and given values
-def interpret_query(query_cmds, query_args):
+def interpret_query(query_args):
     # sets the query object
     query_contents = Query(None, None, None, None, None)
     for arg in query_args:
@@ -75,8 +75,10 @@ def interpret_query(query_cmds, query_args):
                 match field:
                     # Finding specific rank
                     case 'rank':
+                        # If the ranks have not been set yet
                         if query_contents.Lower_Rank == None:
                             if query_contents.Upper_Rank == None:
+                                # Set them as int values
                                 try:
                                     query_contents.Lower_Rank = int(searched)
                                     query_contents.Upper_Rank = int(searched)
@@ -176,7 +178,6 @@ def interpret_query(query_cmds, query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-query_commands = ['is', '>', '<', 'of', 'asc', 'help', 'exit']
-contents = interpret_query(query_commands, ['rank is {Taylor Swift}'])
+contents = interpret_query(['rank is {Taylor Swift}'])
 
 print(contents)
