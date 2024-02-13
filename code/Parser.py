@@ -4,17 +4,6 @@ class Parser:
         self.query = ''
         self.asc = 'desc'
         self.parsed_query = []
-
-    #Simple parsing method, only has error handling for type input
-    #at the moment.
-    def parse(self, query):
-        try:
-            self.parsed_query = query.split(',')
-            for term in self.parsed_query:
-                term.strip()
-        except:
-            print("INPUT QUERY CANNOT BE PARSED")
-            return
         
 # I created this class to act as an object holding info on what we're searching in the DB for
 class Query:
