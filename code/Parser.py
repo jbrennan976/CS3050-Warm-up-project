@@ -11,15 +11,15 @@ class Query:
         self.Upper_Rank = Upper_Rank # int
         self.Artist = Artist         # string
         self.Title = Title           # string
-        self.Features = Features     # string
-        self.Desc = Desc             # bool
+        self.Features = Features     # bool - false default
+        self.Desc = Desc             # bool - false default
 
 # takes a list of commands and arguments after they have been split from each other
     # I designed this to seperate commands and arguments, thought it might be easer than having them combined
 # returns a query object containing info on fields and given values
 def interpret_query(query_args):
     # sets the query object
-    query_contents = Query(None, None, None, None, None, False)
+    query_contents = Query(None, None, None, None, False, True)
     for arg in query_args:
         field = (arg.split(' '))[0].lower() # which field is to be found
 
@@ -113,12 +113,14 @@ def interpret_query(query_args):
                                 print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                                 return None
 
-                        # Finding specific feature
-                        case 'feature':
-                            if query_contents.Features == None:
-                                query_contents.Features = searched
+                        # Finding songs that have features
+                        case 'features':
+                            if searched == 'True':
+                                query_contents.Features = True
+                            elif searched == 'False':
+                                query_contents.Features = False
                             else:
-                                print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                                print("Invalid input. Features can only be {True} or {False}")
                                 return None
                 
                 # with the < and > tests, the field being tested will always be rank since that is the only numeric field
@@ -189,9 +191,9 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-# contents = interpret_query(['rank < {5}', 'artist is {Taylor Swift}'])
+contents = interpret_query(['features is {True}'])
 
-# print(contents)
+print(contents)
 
 def main():
     print('Software Engineering Warm-Up Project')
