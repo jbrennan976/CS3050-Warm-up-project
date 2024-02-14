@@ -188,4 +188,15 @@ def interpret_query(query_args):
 # Using this for testing output -- Feel free to change
 contents = interpret_query(['help'])
 
-print(contents)
+# print(contents)
+
+def main():
+    print('Software Engineering Warm-Up Project')
+    print("Enter queries below. Enter 'help' for a list of commands")
+    # This loop will run until the user enters 'exit'
+    while True:
+        user_input = input('?: ')
+        
+
+
+main()
