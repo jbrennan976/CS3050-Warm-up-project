@@ -72,8 +72,8 @@ def interpret_query(query_args):
                 # Passed to the query program to reverse the order of the database
                 # This will let us get the bottom 5 by input like: "rank < 5 desc"
                 # I changed this from 'asc' to 'desc'; I think descending makes more sense here
-                case 'desc':
-                    query_contents.Desc = True
+                case 'asc':
+                    query_contents.Desc = False
 
                 case 'is':
                     match field:
