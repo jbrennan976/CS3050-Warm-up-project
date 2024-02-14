@@ -126,7 +126,7 @@ def interpret_query(query_args):
                             searched = int(searched[0])
                         except:
                             print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
-                            break
+                            return None
 
                         # sets the upper rank to search up to
                         query_contents.Upper_Rank = int(searched)
@@ -142,7 +142,7 @@ def interpret_query(query_args):
                             searched = int(searched[0])
                         except:
                             print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
-                            break
+                            return None
 
                         # sets the lower rank to start search from
                         query_contents.Lower_Rank = int(searched)
@@ -174,6 +174,10 @@ def interpret_query(query_args):
 
                         case 'feature':
                             query_contents.Features = "FEATURES OF SONG"
+
+                case _:
+                    print("ERROR: COMMAND UNKNOWN")
+                    return None
         
     # if lower and upper ranks were set, set them to default values
     if query_contents.Lower_Rank == None:
@@ -188,15 +192,4 @@ def interpret_query(query_args):
 # Using this for testing output -- Feel free to change
 contents = interpret_query(['help'])
 
-# print(contents)
-
-def main():
-    print('Software Engineering Warm-Up Project')
-    print("Enter queries below. Enter 'help' for a list of commands")
-    # This loop will run until the user enters 'exit'
-    while True:
-        user_input = input('?: ')
-        
-
-
-main()
+print(contents)
