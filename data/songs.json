@@ -3,240 +3,280 @@
     "Rank": 1,
     "Artist": "Ke$ha",
     "Song": "Tik-Toc",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 2,
     "Artist": "Lady GaGa",
     "Song": "Bad Romance",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 3,
     "Artist": "Train",
     "Song": "Hey, Soul Sister",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 4,
     "Artist": "Eminem",
     "Song": "Love The Way You Lie",
-    "Features": "Rihanna"
+    "Features": "Rihanna",
+    "has_feature": true
   },
   {
     "Rank": 5,
     "Artist": "Katy Perry",
     "Song": "California Gurls",
-    "Features": "Snoop Dogg"
+    "Features": "Snoop Dogg",
+    "has_feature": true
   },
   {
     "Rank": 6,
     "Artist": "Taio Cruz",
     "Song": "Dynamite",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 7,
     "Artist": "Lady GaGa",
     "Song": "Telephone",
-    "Features": "Beyonce"
+    "Features": "Beyonce",
+    "has_feature": true
   },
   {
     "Rank": 8,
     "Artist": "Taio Cruz",
     "Song": "Break Your Heart",
-    "Features": "Ludacris"
+    "Features": "Ludacris",
+    "has_feature": true
   },
   {
     "Rank": 9,
     "Artist": "Shakira",
     "Song": "Waka Waka (This Time For Africa)",
-    "Features": "Freshly Ground"
+    "Features": "Freshly Ground",
+    "has_feature": true
   },
   {
     "Rank": 10,
     "Artist": "Lady GaGa",
     "Song": "Alejandro",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 11,
     "Artist": "The Black Eyed Peas",
     "Song": "I Gotta Feeling",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 12,
     "Artist": "BoB",
     "Song": "Airplanes",
-    "Features": "Hayley Williams"
+    "Features": "Hayley Williams",
+    "has_feature": true
   },
   {
     "Rank": 13,
     "Artist": "Usher",
     "Song": "OMG",
-    "Features": "will.i.am"
+    "Features": "will.i.am",
+    "has_feature": true
   },
   {
     "Rank": 14,
     "Artist": "Enrique Iglesias & Pitbull",
     "Song": "I Like It",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 15,
     "Artist": "Rihanna",
     "Song": "Rude Boy",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 16,
     "Artist": "Jason Derulo",
     "Song": "In My Head",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 17,
     "Artist": "Yolanda Be Cool",
     "Song": "We No Speak Americano",
-    "Features": "DCup"
+    "Features": "DCup",
+    "has_feature": true
   },
   {
     "Rank": 18,
     "Artist": "Owl City",
     "Song": "Fireflies",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 19,
     "Artist": "Iyaz",
     "Song": "Replay",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 20,
     "Artist": "Lady Antebellum",
     "Song": "Need You Now",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 21,
     "Artist": "Stromae",
     "Song": "Alors on danse",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 22,
     "Artist": "Eminem",
     "Song": "Not Afraid",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 23,
     "Artist": "Usher",
     "Song": "DJ Got Us Fallin' In Love",
-    "Features": "Pitbull"
+    "Features": "Pitbull",
+    "has_feature": true
   },
   {
     "Rank": 24,
     "Artist": "Jay-Z",
     "Song": "Empire State Of Mind",
-    "Features": "Alicia Keys"
+    "Features": "Alicia Keys",
+    "has_feature": true
   },
   {
     "Rank": 25,
     "Artist": "Flo-Rida",
     "Song": "Club Can't Handle Me",
-    "Features": "David Guetta"
+    "Features": "David Guetta",
+    "has_feature": true
   },
   {
     "Rank": 26,
     "Artist": "Katy Perry",
     "Song": "Teenage Dream",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 27,
     "Artist": "Bruno Mars",
     "Song": "Just The Way You Are (Amazing)",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 28,
     "Artist": "Edward Maya",
     "Song": "Stereo Love",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 29,
     "Artist": "Justin Bieber & Ludacris",
     "Song": "Baby",
-    "Features": "Ludacris"
+    "Features": "Ludacris",
+    "has_feature": true
   },
   {
     "Rank": 30,
     "Artist": "Rihanna",
     "Song": "Only Girl (In The World)",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 31,
     "Artist": "David Guetta",
     "Song": "Memories",
-    "Features": "Kid Cudi"
+    "Features": "Kid Cudi",
+    "has_feature": true
   },
   {
     "Rank": 32,
     "Artist": "BoB & Bruno Mars",
     "Song": "Nothin' On You",
-    "Features": "Bruno Mars"
+    "Features": "Bruno Mars",
+    "has_feature": true
   },
   {
     "Rank": 33,
     "Artist": "The Black Eyed Peas",
     "Song": "Meet Me Half Way",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 34,
     "Artist": "K'naan",
     "Song": "Wavin' Flag",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 35,
     "Artist": "David Guetta",
     "Song": "Sexy Chick (Sexy Bitch)",
-    "Features": "Akon"
+    "Features": "Akon",
+    "has_feature": true
   },
   {
     "Rank": 36,
     "Artist": "Adam Lambert",
     "Song": "What Do You Want From Me?",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 37,
     "Artist": "Mike Posner",
     "Song": "Cooler Than Me",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   },
   {
     "Rank": 38,
     "Artist": "Travie McCoy",
     "Song": "Billionaire",
-    "Features": "Bruno Mars"
+    "Features": "Bruno Mars",
+    "has_feature": true
   },
   {
     "Rank": 39,
     "Artist": "David Guetta",
     "Song": "Getting Over You",
-    "Features": "Chris Willis"
+    "Features": "Chris Willis",
+    "has_feature": true
   },
   {
     "Rank": 40,
     "Artist": "Unheilig",
     "Song": "Geboren um zu leben",
-    "Features": ""
+    "Features": "",
+    "has_feature": false
   }
 ]
