@@ -199,7 +199,10 @@ def main():
         send_to_parser = []
         send_to_parser = user_input.split(',')
         send_to_query = interpret_query(send_to_parser)
-        print(send_to_query)
+        if send_to_query != None:
+            # use send_to_query in query.py
+            pass
+        # print(send_to_query)
 
         
 
