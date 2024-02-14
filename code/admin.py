@@ -4,18 +4,20 @@ import json
 db = config.initFirestone()
 
 class Song:
-    def __init__(self, rank, artist, song, features):
+    def __init__(self, rank, artist, song, features, has_feature):
         self.rank = rank
         self.artist = artist
         self.song = song
         self.features = features
+        self.has_feature = has_feature
     
     def to_dict(self):
         return {
             "Rank": self.rank,
             "Artist": self.artist,
             "Song": self.song,
-            "Features": self.features
+            "Features": self.features,
+            "has_feature": self.has_feature
             }
 
 def clear_data():
@@ -41,7 +43,7 @@ def upload_data():
     else:
         data = json.load(f)
         for line in data:
-            song_line = Song(line["Rank"], line["Artist"], line["Song"], line["Features"])
+            song_line = Song(line["Rank"], line["Artist"], line["Song"], line["Features"], line["has_feature"])
             db.collection("song_rankings").add(song_line.to_dict())
         print("Data successfully uploaded")
 
