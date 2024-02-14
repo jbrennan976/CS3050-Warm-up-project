@@ -130,7 +130,7 @@ def interpret_query(query_args):
                             searched = int(searched[0])
                         except:
                             print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
-                            break
+                            return None
 
                         # sets the upper rank to search up to
                         query_contents.Upper_Rank = int(searched)
@@ -146,7 +146,7 @@ def interpret_query(query_args):
                             searched = int(searched[0])
                         except:
                             print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
-                            break
+                            return None
 
                         # sets the lower rank to start search from
                         query_contents.Lower_Rank = int(searched)
