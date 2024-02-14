@@ -23,153 +23,158 @@ def interpret_query(query_args):
     query_contents = Query(None, None, None, None, None, False)
     for arg in query_args:
         field = (arg.split(' '))[0].lower() # which field is to be found
-        searched = (arg.split('{')) 
-        searched = searched[1].split('}')
-        searched = searched[0] # which field is given
 
-        command = (arg.split(' '))[1].lower()
-        match command:
-            # print help section
-            case 'help':
-                print("Here is a list of commands:\n")
-                print("'help': Displays this list\n")
+        if field == "help" or field == "exit":
+            match field:
+                case 'help':
+                    print("Here is a list of commands:\n")
+                    print("'help': Displays this list\n")
 
-                print("'?:': Every user query has to start with this argument\n")
+                    print("'?:': Every user query has to start with this argument\n")
 
-                print("'{ }': Used to specify which parts of the query are arguments. \n" + 
-                    "Example: {Taylor Swift} is used to refer to the artist value Taylor Swift\n")
+                    print("Use ',' to input multiple commands\n")
+
+                    print("'{ }': Used to specify which parts of the query are arguments. \n" + 
+                        "Example: {Taylor Swift} is used to refer to the artist value Taylor Swift\n")
+                    
+                    print("'is': Used to query if a provided field is equal to some value. \n" + 
+                        "Returns a list of data that the equality holds true for. \n" + 
+                        "Example: '?: artist is \{Kanye\}' will return all songs with the Artist 'Kayne'\n")
+                    
+                    print("'<': Used to query a numeric field, and returns all data where the field value is less than the provided value. \n" + 
+                        "Example: '?: rank < \{6\}' will return the first five songs in the dataset\n")
+
+                    print("'>': Used to query a numeric field, and returns all data where the field value is greater than the provided value. \n" +
+                        "'Example: '?: rank > \{5\}' will return all songs with rank greater than five\n")
+
+                    print("'of': Used to get another field, given a song title. \n" + 
+                        "Example: '?: rank of {Good Morning}' returns the rank of the song with the Title 'Good Morning'\n")
+
+                    print("'asc': Optional command, used to reverse order of data to pick from the bottom first. Default order is top down. \n" + 
+                        "Example: '?: rank > \{15\}, asc' will return songs of ranks 40 through 26\n")
+                    
+                    print("'exit': Used to exit out of the query program\n")
                 
-                print("'is': Used to query if a provided field is equal to some value. \n" + 
-                    "Returns a list of data that the equality holds true for. \n" + 
-                    "Example: '?: artist is \{Kanye\}' will return all songs with the Artist 'Kayne'\n")
-                
-                print("'<': Used to query a numeric field, and returns all data where the field value is less than the provided value. \n" + 
-                    "Example: '?: rank < \{6\}' will return the first five songs in the dataset\n")
+                case 'exit':
+                    print("Ending program")
+                    exit()
+        
+        else:
+            searched = (arg.split('{')) 
+            searched = searched[1].split('}')
+            searched = searched[0] # which field is given
 
-                print("'>': Used to query a numeric field, and returns all data where the field value is greater than the provided value. \n" +
-                    "'Example: '?: rank > \{5\}' will return all songs with rank greater than five\n")
+            command = (arg.split(' '))[1].lower()
+            match command:
+                # Passed to the query program to reverse the order of the database
+                # This will let us get the bottom 5 by input like: "rank < 5 desc"
+                # I changed this from 'asc' to 'desc'; I think descending makes more sense here
+                case 'desc':
+                    query_contents.Desc = True
 
-                print("'of': Used to get another field of a value. \n" + 
-                    "Example: '?: rank of {Good Morning}' returns the rank of the song with the Title 'Good Morning'\n")
+                case 'is':
+                    match field:
+                        # Finding specific rank
+                        case 'rank':
+                            # If the ranks have not been set yet
+                            if query_contents.Lower_Rank == None:
+                                if query_contents.Upper_Rank == None:
+                                    # Set them as int values
+                                    try:
+                                        query_contents.Lower_Rank = int(searched)
+                                        query_contents.Upper_Rank = int(searched)
 
-                print("'asc': Optional command, used to reverse order of data to pick from the bottom first. Default order is top down. \n" + 
-                    "Example: '?: rank > \{15\}, asc' will return songs of ranks 40 through 26\n")
-                
-                print("'exit': Used to exit out of the query program")
-
-            # Passed to the query program to reverse the order of the database
-            # This will let us get the bottom 5 by input like: "rank < 5 desc"
-            # I changed this from 'asc' to 'desc'; I think descending makes more sense here
-            case 'desc':
-                query_contents.Desc = True
-
-            case 'is':
-                match field:
-                    # Finding specific rank
-                    case 'rank':
-                        # If the ranks have not been set yet
-                        if query_contents.Lower_Rank == None:
-                            if query_contents.Upper_Rank == None:
-                                # Set them as int values
-                                try:
-                                    query_contents.Lower_Rank = int(searched)
-                                    query_contents.Upper_Rank = int(searched)
-
-                                except:
-                                    print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
-                                    break
+                                    except:
+                                        print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
+                                        break
+                                else:
+                                    print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                                    return None
                             else:
                                 print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                                 return None
-                        else:
-                            print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
-                            return None
 
-                    # Finding specific artist
-                    case 'artist':
-                        if query_contents.Artist == None:
-                            query_contents.Artist = searched
-                        else:
-                            print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
-                            return None
-                    
-                    # Finding specific title
-                    case 'title':
-                        if query_contents.Title == None:
-                            query_contents.Title = searched
-                        else:
-                            print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
-                            return None
+                        # Finding specific artist
+                        case 'artist':
+                            if query_contents.Artist == None:
+                                query_contents.Artist = searched
+                            else:
+                                print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                                return None
+                        
+                        # Finding specific title
+                        case 'title':
+                            if query_contents.Title == None:
+                                query_contents.Title = searched
+                            else:
+                                print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                                return None
 
-                    # Finding specific feature
-                    case 'feature':
-                        if query_contents.Features == None:
-                            query_contents.Features = searched
-                        else:
-                            print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
-                            return None
-            
-            # with the < and > tests, the field being tested will always be rank since that is the only numeric field
-            case '<':
-                # Check if the upper rank has been set yet
-                if query_contents.Upper_Rank == None:
-                    try:
-                        searched = int(searched[0])
-                    except:
-                        print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
-                        break
-
-                    # sets the upper rank to search up to
-                    query_contents.Upper_Rank = int(searched)
+                        # Finding specific feature
+                        case 'feature':
+                            if query_contents.Features == None:
+                                query_contents.Features = searched
+                            else:
+                                print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
+                                return None
                 
-                else:
-                    print("ERROR: CANNOT GIVE TWO '<' VALUES FOR THE SAME FIELD")
+                # with the < and > tests, the field being tested will always be rank since that is the only numeric field
+                case '<':
+                    # Check if the upper rank has been set yet
+                    if query_contents.Upper_Rank == None:
+                        try:
+                            searched = int(searched[0])
+                        except:
+                            print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
+                            break
 
-            # with the < and > tests, the field being tested will always be rank since that is the only numeric field
-            case '>':
-                # Check if the lower rank has been set yet
-                if query_contents.Lower_Rank == None:
-                    try:
-                        searched = int(searched[0])
-                    except:
-                        print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
-                        break
-
-                    # sets the lower rank to start search from
-                    query_contents.Lower_Rank = int(searched)
-                
-                else:
-                    print("ERROR: CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
-
-            # TODO:
-            # I'm thinking we should make it so that the user needs to specify what they are checking against in 'of'
-            # Since they can make queries like "rank of {TITLE}" and "title of {RANK}"
-            # Both are valid queries, and it may be easier if we have the user specify which field is the one they are querying
-            # Maybe something like "rank of title {Bad Romance}" to signify "Bad Romance" is a title we're searching for
-            #  -- Alex
+                        # sets the upper rank to search up to
+                        query_contents.Upper_Rank = int(searched)
                     
-            # To simplify the 'of' case, we'll say that the second term/arg will always be "title"
-            case 'of':
-                query_contents.Title = searched
-                match field:
-                    case 'rank':
-                        query_contents.Lower_Rank = "RANK OF SONG"
-                        query_contents.Upper_Rank = "RANK OF SONG"
+                    else:
+                        print("ERROR: CANNOT GIVE TWO '<' VALUES FOR THE SAME FIELD")
 
-                    case 'artist':
-                        query_contents.Artist = "ARTIST OF SONG"
+                # with the < and > tests, the field being tested will always be rank since that is the only numeric field
+                case '>':
+                    # Check if the lower rank has been set yet
+                    if query_contents.Lower_Rank == None:
+                        try:
+                            searched = int(searched[0])
+                        except:
+                            print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
+                            break
 
-                    case 'title':
-                        print("ERROR: CANNOT SEARCH FOR TITLE OF TITLE")
-                        return None
+                        # sets the lower rank to start search from
+                        query_contents.Lower_Rank = int(searched)
+                    
+                    else:
+                        print("ERROR: CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
 
-                    case 'feature':
-                        query_contents.Features = "FEATURES OF SONG"
+                # TODO:
+                # I'm thinking we should make it so that the user needs to specify what they are checking against in 'of'
+                # Since they can make queries like "rank of {TITLE}" and "title of {RANK}"
+                # Both are valid queries, and it may be easier if we have the user specify which field is the one they are querying
+                # Maybe something like "rank of title {Bad Romance}" to signify "Bad Romance" is a title we're searching for
+                #  -- Alex
+                        
+                # To simplify the 'of' case, we'll say that the second term/arg will always be "title"
+                case 'of':
+                    query_contents.Title = searched
+                    match field:
+                        case 'rank':
+                            query_contents.Lower_Rank = "RANK OF SONG"
+                            query_contents.Upper_Rank = "RANK OF SONG"
 
-            # TODO
-            case 'exit':
-                print('exit')
-    
+                        case 'artist':
+                            query_contents.Artist = "ARTIST OF SONG"
+
+                        case 'title':
+                            print("ERROR: CANNOT SEARCH FOR TITLE OF TITLE")
+                            return None
+
+                        case 'feature':
+                            query_contents.Features = "FEATURES OF SONG"
+        
     # if lower and upper ranks were set, set them to default values
     if query_contents.Lower_Rank == None:
         query_contents.Lower_Rank = 1
@@ -181,6 +186,6 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['rank of {Bad Romance}'])
+contents = interpret_query(['help'])
 
 print(contents)
