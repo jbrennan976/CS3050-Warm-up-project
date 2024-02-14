@@ -8,12 +8,12 @@ class Parser:
 # I created this class to act as an object holding info on what we're searching in the DB for
 class Query:
     def __init__(self, Lower_Rank, Upper_Rank, Artist, Title, Features, Desc):
-        self.Lower_Rank = Lower_Rank
-        self.Upper_Rank = Upper_Rank
-        self.Artist = Artist
-        self.Title = Title
-        self.Features = Features
-        self.Desc = Desc
+        self.Lower_Rank = Lower_Rank # int
+        self.Upper_Rank = Upper_Rank # int
+        self.Artist = Artist         # string
+        self.Title = Title           # string
+        self.Features = Features     # string
+        self.Desc = Desc             # bool
 
 # takes a list of commands and arguments after they have been split from each other
     # I designed this to seperate commands and arguments, thought it might be easer than having them combined
@@ -59,7 +59,7 @@ def interpret_query(query_args):
                     print("Ending program")
                     exit()
         
-        else:
+        elif field in ['rank', 'title', 'artist', 'features']:
             searched = (arg.split('{')) 
             searched = searched[1].split('}')
             searched = searched[0] # which field is given
@@ -149,13 +149,6 @@ def interpret_query(query_args):
                     
                     else:
                         print("ERROR: CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
-
-                # TODO:
-                # I'm thinking we should make it so that the user needs to specify what they are checking against in 'of'
-                # Since they can make queries like "rank of {TITLE}" and "title of {RANK}"
-                # Both are valid queries, and it may be easier if we have the user specify which field is the one they are querying
-                # Maybe something like "rank of title {Bad Romance}" to signify "Bad Romance" is a title we're searching for
-                #  -- Alex
                         
                 # To simplify the 'of' case, we'll say that the second term/arg will always be "title"
                 case 'of':
@@ -174,6 +167,9 @@ def interpret_query(query_args):
 
                         case 'feature':
                             query_contents.Features = "FEATURES OF SONG"
+        else:
+            print("Invalid input")
+            return
         
     # if lower and upper ranks were set, set them to default values
     if query_contents.Lower_Rank == None:
@@ -186,7 +182,7 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['help'])
+# contents = interpret_query(['rank < {5}', 'artist is {Taylor Swift}'])
 
 # print(contents)
 
@@ -196,6 +192,11 @@ def main():
     # This loop will run until the user enters 'exit'
     while True:
         user_input = input('?: ')
+        send_to_parser = []
+        send_to_parser = user_input.split(',')
+        send_to_query = interpret_query(send_to_parser)
+        print(send_to_query)
+
         
 
 
