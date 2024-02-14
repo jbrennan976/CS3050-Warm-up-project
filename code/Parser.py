@@ -147,19 +147,24 @@ def interpret_query(query_args):
             # Both are valid queries, and it may be easier if we have the user specify which field is the one they are querying
             # Maybe something like "rank of title {Bad Romance}" to signify "Bad Romance" is a title we're searching for
             #  -- Alex
+                    
+            # To simplify the 'of' case, we'll say that the second term/arg will always be "title"
             case 'of':
+                query_contents.Title = searched
                 match field:
                     case 'rank':
-                        pass
+                        query_contents.Lower_Rank = "RANK OF SONG"
+                        query_contents.Upper_Rank = "RANK OF SONG"
 
                     case 'artist':
-                        pass
+                        query_contents.Artist = "ARTIST OF SONG"
 
                     case 'title':
-                        pass
+                        print("ERROR: CANNOT SEARCH FOR TITLE OF TITLE")
+                        return None
 
                     case 'feature':
-                        pass
+                        query_contents.Features = "FEATURES OF SONG"
 
             # TODO
             case 'exit':
@@ -176,6 +181,6 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['artist is {Taylor Swift}',  'rank < {5}'])
+contents = interpret_query(['rank of {Bad Romance}'])
 
 print(contents)
