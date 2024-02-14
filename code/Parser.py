@@ -2,7 +2,6 @@ class Parser:
 
     def __init__(self):
         self.query = ''
-        self.asc = 'desc'
         self.parsed_query = []
         
 # I created this class to act as an object holding info on what we're searching in the DB for
@@ -20,7 +19,7 @@ class Query:
 # returns a query object containing info on fields and given values
 def interpret_query(query_args):
     # sets the query object
-    query_contents = Query(None, None, None, None, None, True)
+    query_contents = Query(None, None, None, None, None, False)
     for arg in query_args:
         field = (arg.split(' '))[0].lower() # which field is to be found
 
@@ -74,7 +73,7 @@ def interpret_query(query_args):
                 # This will let us get the bottom 5 by input like: "rank < 5 desc"
                 # I changed this from 'asc' to 'desc'; I think descending makes more sense here
                 case 'desc':
-                    query_contents.Desc = False
+                    query_contents.Desc = True
 
                 case 'is':
                     match field:
@@ -171,6 +170,10 @@ def interpret_query(query_args):
 
                         case 'feature':
                             query_contents.Features = "FEATURES OF SONG"
+
+                case _:
+                    print('ERROR: UNKNOWN COMMMAND. Please type \'help\' for a list of commands')
+                    return None
         else:
             print("Invalid input")
             return
@@ -200,14 +203,10 @@ def main():
         send_to_parser = user_input.split(',')
         send_to_query = interpret_query(send_to_parser)
         if send_to_query != None:
-            # use send_to_query in query.py here
+            # use send_to_query in query.py
             pass
         # print(send_to_query)
 
-        # get the value given back from query.py
-
-        # print the contents of this value to the user
-        # for songs in 
         
 
 
