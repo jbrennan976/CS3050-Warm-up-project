@@ -60,11 +60,15 @@ def interpret_query(query_args):
                     exit()
         
         elif field in ['rank', 'title', 'artist', 'features']:
-            searched = (arg.split('{')) 
-            searched = searched[1].split('}')
-            searched = searched[0] # which field is given
+            try:
+                searched = (arg.split('{')) 
+                searched = searched[1].split('}')
+                searched = searched[0] # which field is given
 
-            command = (arg.split(' '))[1].lower()
+                command = (arg.split(' '))[1].lower()
+            except:
+                print("Invalid syntax. Did you remember your {}?")
+                return
             match command:
                 # Passed to the query program to reverse the order of the database
                 # This will let us get the bottom 5 by input like: "rank < 5 desc"
@@ -171,7 +175,7 @@ def interpret_query(query_args):
             print("Invalid input")
             return
         
-    # if lower and upper ranks were set, set them to default values
+    # if lower and upper ranks were not set, set them to default values
     if query_contents.Lower_Rank == None:
         query_contents.Lower_Rank = 1
     
