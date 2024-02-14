@@ -23,5 +23,5 @@ def query_db(query):
 
 
 if __name__ == "__main__":
-    ex_q = query_db(Query(1, 40, None, "Memories", True, False))
+    ex_q = query_db(Query(1, 40, "Lady GaGa", None, False, True))
     print(ex_q)

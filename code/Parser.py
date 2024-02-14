@@ -23,7 +23,7 @@ def interpret_query(query_args):
     for arg in query_args:
         field = (arg.split(' '))[0].lower() # which field is to be found
 
-        if field == "help" or field == "exit":
+        if field == "help" or field == "exit" or field == "asc":
             match field:
                 case 'help':
                     print("Here is a list of commands:\n")
@@ -57,6 +57,11 @@ def interpret_query(query_args):
                 case 'exit':
                     print("Ending program")
                     exit()
+
+                # Passed to the query program to reverse the order of the database
+                # This will let us get the bottom 5 by input like: "rank < 5 asc"
+                case 'asc':
+                    query_contents.Desc = False
         
         elif field in ['rank', 'title', 'artist', 'features']:
             try:
@@ -69,12 +74,6 @@ def interpret_query(query_args):
                 print("Invalid syntax. Did you remember your {}?")
                 return
             match command:
-                # Passed to the query program to reverse the order of the database
-                # This will let us get the bottom 5 by input like: "rank < 5 desc"
-                # I changed this from 'asc' to 'desc'; I think descending makes more sense here
-                case 'asc':
-                    query_contents.Desc = False
-
                 case 'is':
                     match field:
                         # Finding specific rank
@@ -179,7 +178,7 @@ def interpret_query(query_args):
         else:
             print("Invalid input")
             return
-        
+
     # if lower and upper ranks were not set, set them to default values
     if query_contents.Lower_Rank == None:
         query_contents.Lower_Rank = 1
@@ -187,10 +186,17 @@ def interpret_query(query_args):
     if query_contents.Upper_Rank == None:
         query_contents.Upper_Rank = 40
 
+    if query_contents.Desc == False:
+        low_temp = 40 - (query_contents.Upper_Rank - 1)
+        high_temp = 40 - (query_contents.Lower_Rank - 1)
+        query_contents.Lower_Rank = low_temp
+        query_contents.Upper_Rank = high_temp
+        pass
+
     # return the query object
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['features is {True}'])
+contents = interpret_query(['features is {True}', 'asc', 'rank < {5}'])
 
 print(contents)
