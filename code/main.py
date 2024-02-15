@@ -18,10 +18,10 @@ def main():
         if send_to_query != None:
             results = query_db(send_to_query)
             pass
-        for dict in results:
-            print(dict,"\n")
-        if len(results) == 0:
-            print("No songs found\n")
+            for dict in results:
+                print(dict,"\n")
+            if len(results) == 0:
+                print("No songs found\n")
     return
 
 main()
