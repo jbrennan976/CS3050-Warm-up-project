@@ -14,8 +14,7 @@ class Query:
         self.Features = Features     # bool - false default
         self.Desc = Desc             # bool - false default
 
-# takes a list of commands and arguments after they have been split from each other
-    # I designed this to seperate commands and arguments, thought it might be easer than having them combined
+# takes a list arguments that contains the user inputs, separated by command
 # returns a query object containing info on fields and given values
 def interpret_query(query_args):
     # sets the query object
@@ -24,8 +23,10 @@ def interpret_query(query_args):
         arg = arg.strip()
         field = (arg.split(' '))[0].lower() # which field is to be found
 
+        # special case commands
         if field == "help" or field == "exit" or field == "asc" or field == "all":
             match field:
+                # print help list
                 case 'help':
                     print("Here is a list of commands:\n")
                     print("'help': Displays this list\n")
@@ -58,35 +59,41 @@ def interpret_query(query_args):
                     print("'exit': Used to exit out of the query program\n")
                     return None
                 
+                # exit program
                 case 'exit':
                     print("Ending program")
                     exit()
 
-                # Passed to the query program to reverse the order of the database
+                # Used to reverse the order of the database
                 # This will let us get the bottom 5 by input like: "rank < 5 asc"
                 case 'asc':
                     query_contents.Desc = False
 
+                # Prints all of the songs
                 case 'all':
                     print("Printing all songs:\n")
                     query_contents.Lower_Rank = 1
                     query_contents.Upper_Rank = 40
                     return query_contents
         
+        # specific queried fields
         elif field in ['rank', 'title', 'artist', 'features']:
             try:
+                # get the user field
                 searched = (arg.split('{')) 
                 searched = searched[1].split('}')
                 searched = searched[0] # which field is given
 
+                # what command is being used
                 command = (arg.split(' '))[1].lower()
             except:
                 print("Invalid syntax. Did you remember your {}?")
                 return
+            
             match command:
                 case 'is':
                     match field:
-                        # Finding specific rank
+                        # Finding specific rank -- Set lower and upper to same val
                         case 'rank':
                             # If the ranks have not been set yet
                             if query_contents.Lower_Rank == None:
@@ -163,6 +170,8 @@ def interpret_query(query_args):
                     
                     else:
                         print("ERROR: CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
+                        
+                # We didn't get this to work in time
                         
                 # To simplify the 'of' case, we'll say that the second term/arg will always be "title"
                 # case 'of':
