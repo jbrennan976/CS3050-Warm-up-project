@@ -20,6 +20,8 @@ def main():
             pass
         for dict in results:
             print(dict,"\n")
+        if len(results) == 0:
+            print("No songs found\n")
     return
 
 main()
