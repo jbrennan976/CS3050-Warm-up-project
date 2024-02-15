@@ -24,7 +24,7 @@ def interpret_query(query_args):
         arg = arg.strip()
         field = (arg.split(' '))[0].lower() # which field is to be found
 
-        if field == "help" or field == "exit" or field == "asc":
+        if field == "help" or field == "exit" or field == "asc" or field == "all":
             match field:
                 case 'help':
                     print("Here is a list of commands:\n")
@@ -33,6 +33,8 @@ def interpret_query(query_args):
                     print("'?:': Every user query has to start with this argument\n")
 
                     print("Use ',' to input multiple commands\n")
+
+                    print("'all': Command to print all of the items in the dataset\n")
 
                     print("'{ }': Used to specify which parts of the query are arguments. \n" + 
                         "Example: {Taylor Swift} is used to refer to the artist value Taylor Swift\n")
@@ -47,8 +49,8 @@ def interpret_query(query_args):
                     print("'>': Used to query a numeric field, and returns all data where the field value is greater than the provided value. \n" +
                         "'Example: '?: rank > \{5\}' will return all songs with rank greater than five\n")
 
-                    print("'of': Used to get another field, given a song title. \n" + 
-                        "Example: '?: rank of {Good Morning}' returns the rank of the song with the Title 'Good Morning'\n")
+                    # print("'of': Used to get another field, given a song title. \n" + 
+                    #     "Example: '?: rank of {Good Morning}' returns the rank of the song with the Title 'Good Morning'\n")
 
                     print("'asc': Optional command, used to reverse order of data to pick from the bottom first. Default order is top down. \n" + 
                         "Example: '?: rank > \{15\}, asc' will return songs of ranks 40 through 26\n")
@@ -64,6 +66,12 @@ def interpret_query(query_args):
                 # This will let us get the bottom 5 by input like: "rank < 5 asc"
                 case 'asc':
                     query_contents.Desc = False
+
+                case 'all':
+                    print("Printing all songs:\n")
+                    query_contents.Lower_Rank = 1
+                    query_contents.Upper_Rank = 40
+                    return query_contents
         
         elif field in ['rank', 'title', 'artist', 'features']:
             try:
@@ -129,7 +137,7 @@ def interpret_query(query_args):
                     # Check if the upper rank has been set yet
                     if query_contents.Upper_Rank == None:
                         try:
-                            searched = int(searched[0])
+                            searched = int(searched)
                         except:
                             print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
                             return None
@@ -159,22 +167,22 @@ def interpret_query(query_args):
                         return None
                         
                 # To simplify the 'of' case, we'll say that the second term/arg will always be "title"
-                case 'of':
-                    query_contents.Title = searched
-                    match field:
-                        case 'rank':
-                            query_contents.Lower_Rank = "RANK OF SONG"
-                            query_contents.Upper_Rank = "RANK OF SONG"
+                # case 'of':
+                #     query_contents.Title = searched
+                #     match field:
+                #         case 'rank':
+                #             query_contents.Lower_Rank = "RANK OF SONG"
+                #             query_contents.Upper_Rank = "RANK OF SONG"
 
-                        case 'artist':
-                            query_contents.Artist = "ARTIST OF SONG"
+                #         case 'artist':
+                #             query_contents.Artist = "ARTIST OF SONG"
 
-                        case 'title':
-                            print("ERROR: CANNOT SEARCH FOR TITLE OF TITLE")
-                            return None
+                #         case 'title':
+                #             print("ERROR: CANNOT SEARCH FOR TITLE OF TITLE")
+                #             return None
 
-                        case 'feature':
-                            query_contents.Features = "FEATURES OF SONG"
+                #         case 'feature':
+                #             query_contents.Features = "FEATURES OF SONG"
 
                 case _:
                     print('ERROR: UNKNOWN COMMMAND. Please type \'help\' for a list of commands')
@@ -190,6 +198,7 @@ def interpret_query(query_args):
     if query_contents.Upper_Rank == None:
         query_contents.Upper_Rank = 40
 
+    # if the user chooses to read ranks in reverse order, adjust rank search values
     if query_contents.Desc == False:
         low_temp = 40 - (query_contents.Upper_Rank - 1)
         high_temp = 40 - (query_contents.Lower_Rank - 1)
@@ -201,6 +210,6 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['rank > {20}'])
+# contents = interpret_query(['rank > {20}'])
 
-print(contents)
+# print(contents)
