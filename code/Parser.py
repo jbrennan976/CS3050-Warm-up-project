@@ -196,6 +196,7 @@ def interpret_query(query_args):
     if query_contents.Upper_Rank == None:
         query_contents.Upper_Rank = 40
 
+    # if the user chooses to read ranks in reverse order, adjust rank search values
     if query_contents.Desc == False:
         low_temp = 40 - (query_contents.Upper_Rank - 1)
         high_temp = 40 - (query_contents.Lower_Rank - 1)
@@ -207,6 +208,6 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['rank > {20}'])
+# contents = interpret_query(['rank > {20}'])
 
-print(contents)
+# print(contents)
