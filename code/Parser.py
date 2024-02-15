@@ -83,6 +83,7 @@ def interpret_query(query_args):
                 searched = (arg.split('{')) 
                 searched = searched[1].split('}')
                 searched = searched[0] # which field is given
+                searched = searched.strip()
 
                 # what command is being used
                 command = (arg.split(' '))[1].lower()
