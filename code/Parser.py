@@ -24,7 +24,7 @@ def interpret_query(query_args):
         arg = arg.strip()
         field = (arg.split(' '))[0].lower() # which field is to be found
 
-        if field == "help" or field == "exit" or field == "asc":
+        if field == "help" or field == "exit" or field == "asc" or field == "all":
             match field:
                 case 'help':
                     print("Here is a list of commands:\n")
@@ -33,6 +33,8 @@ def interpret_query(query_args):
                     print("'?:': Every user query has to start with this argument\n")
 
                     print("Use ',' to input multiple commands\n")
+
+                    print("'all': Command to print all of the items in the dataset\n")
 
                     print("'{ }': Used to specify which parts of the query are arguments. \n" + 
                         "Example: {Taylor Swift} is used to refer to the artist value Taylor Swift\n")
@@ -64,6 +66,12 @@ def interpret_query(query_args):
                 # This will let us get the bottom 5 by input like: "rank < 5 asc"
                 case 'asc':
                     query_contents.Desc = False
+
+                case 'all':
+                    print("Printing all songs:\n")
+                    query_contents.Lower_Rank = 1
+                    query_contents.Upper_Rank = 40
+                    return query_contents
         
         elif field in ['rank', 'title', 'artist', 'features']:
             try:
