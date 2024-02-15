@@ -145,7 +145,7 @@ def interpret_query(query_args):
                     # Check if the lower rank has been set yet
                     if query_contents.Lower_Rank == None:
                         try:
-                            searched = int(searched[0])
+                            searched = int(searched)
                         except:
                             print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
                             return None
@@ -199,6 +199,6 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['artist is {Lady GaGa}', 'rank is {10}'])
+contents = interpret_query(['rank > {20}'])
 
 print(contents)
