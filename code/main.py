@@ -18,10 +18,15 @@ def main():
         if send_to_query != None:
             results = query_db(send_to_query)
             pass
-            for dict in results:
-                print(dict,"\n")
-            if len(results) == 0:
-                print("No songs found\n")
+        for dict in results:
+            result = ""
+            for elt in dict:
+                if elt != 'has_feature':
+                    if str(dict[elt]) != "":
+                        result += elt + ': ' + str(dict[elt]) + ' '
+            print(result,"\n")
+        if len(results) == 0:
+            print("No songs found\n")
     return
 
 main()
