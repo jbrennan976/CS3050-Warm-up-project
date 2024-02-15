@@ -197,6 +197,6 @@ def interpret_query(query_args):
     return query_contents
 
 # Using this for testing output -- Feel free to change
-contents = interpret_query(['features is {True}', 'asc', 'rank < {5}'])
+contents = interpret_query(['artist is {Lady GaGa}', 'rank is {10}'])
 
 print(contents)
