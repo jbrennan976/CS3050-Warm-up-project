@@ -1,6 +1,11 @@
 from google.cloud import firestore
 from Parser import Query
 import config
+import warnings
+
+# Suppress warnings about positional arguments in Firestore queries
+warnings.filterwarnings("ignore", category=UserWarning, message="Detected filter using positional arguments. Prefer using the 'filter' keyword argument instead.")
+
 db = config.initFirestone()
 song_ref = db.collection("song_rankings")
 
