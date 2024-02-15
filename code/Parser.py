@@ -49,8 +49,8 @@ def interpret_query(query_args):
                     print("'>': Used to query a numeric field, and returns all data where the field value is greater than the provided value. \n" +
                         "'Example: '?: rank > \{5\}' will return all songs with rank greater than five\n")
 
-                    print("'of': Used to get another field, given a song title. \n" + 
-                        "Example: '?: rank of {Good Morning}' returns the rank of the song with the Title 'Good Morning'\n")
+                    # print("'of': Used to get another field, given a song title. \n" + 
+                    #     "Example: '?: rank of {Good Morning}' returns the rank of the song with the Title 'Good Morning'\n")
 
                     print("'asc': Optional command, used to reverse order of data to pick from the bottom first. Default order is top down. \n" + 
                         "Example: '?: rank > \{15\}, asc' will return songs of ranks 40 through 26\n")
@@ -137,7 +137,7 @@ def interpret_query(query_args):
                     # Check if the upper rank has been set yet
                     if query_contents.Upper_Rank == None:
                         try:
-                            searched = int(searched[0])
+                            searched = int(searched)
                         except:
                             print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
                             return None
@@ -165,22 +165,22 @@ def interpret_query(query_args):
                         print("ERROR: CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
                         
                 # To simplify the 'of' case, we'll say that the second term/arg will always be "title"
-                case 'of':
-                    query_contents.Title = searched
-                    match field:
-                        case 'rank':
-                            query_contents.Lower_Rank = "RANK OF SONG"
-                            query_contents.Upper_Rank = "RANK OF SONG"
+                # case 'of':
+                #     query_contents.Title = searched
+                #     match field:
+                #         case 'rank':
+                #             query_contents.Lower_Rank = "RANK OF SONG"
+                #             query_contents.Upper_Rank = "RANK OF SONG"
 
-                        case 'artist':
-                            query_contents.Artist = "ARTIST OF SONG"
+                #         case 'artist':
+                #             query_contents.Artist = "ARTIST OF SONG"
 
-                        case 'title':
-                            print("ERROR: CANNOT SEARCH FOR TITLE OF TITLE")
-                            return None
+                #         case 'title':
+                #             print("ERROR: CANNOT SEARCH FOR TITLE OF TITLE")
+                #             return None
 
-                        case 'feature':
-                            query_contents.Features = "FEATURES OF SONG"
+                #         case 'feature':
+                #             query_contents.Features = "FEATURES OF SONG"
 
                 case _:
                     print('ERROR: UNKNOWN COMMMAND. Please type \'help\' for a list of commands')
