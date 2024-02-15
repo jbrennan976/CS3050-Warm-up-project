@@ -31,7 +31,7 @@ def interpret_query(query_args):
                     print("Here is a list of commands:\n")
                     print("'help': Displays this list\n")
 
-                    print("'?:': Every user query has to start with this argument\n")
+                    print("Queriable fields of the data are: 'rank', 'title', 'artist', 'features'")
 
                     print("Use ',' to input multiple commands\n")
 
@@ -42,19 +42,22 @@ def interpret_query(query_args):
                     
                     print("'is': Used to query if a provided field is equal to some value. \n" + 
                         "Returns a list of data that the equality holds true for. \n" + 
-                        "Example: '?: artist is \{Kanye\}' will return all songs with the Artist 'Kayne'\n")
+                        "Example: '?: artist is {Kanye}' will return all songs with the Artist 'Kayne'\n")
                     
-                    print("'<': Used to query a numeric field, and returns all data where the field value is less than the provided value. \n" + 
-                        "Example: '?: rank < \{6\}' will return the first five songs in the dataset\n")
+                    print("'<': Used to query a numeric field, and returns all data where the field value is less than or equal to the provided value. \n" + 
+                        "Example: '?: rank < {6}' will return the first five songs in the dataset\n")
 
                     print("'>': Used to query a numeric field, and returns all data where the field value is greater than the provided value. \n" +
-                        "'Example: '?: rank > \{5\}' will return all songs with rank greater than five\n")
-
-                    # print("'of': Used to get another field, given a song title. \n" + 
-                    #     "Example: '?: rank of {Good Morning}' returns the rank of the song with the Title 'Good Morning'\n")
+                        "'Example: '?: rank > {5}' will return all songs with rank greater than or eqaul to five\n")
 
                     print("'asc': Optional command, used to reverse order of data to pick from the bottom first. Default order is top down. \n" + 
-                        "Example: '?: rank > \{15\}, asc' will return songs of ranks 40 through 26\n")
+                        "Example: '?: rank > {26}, rank < {40}, asc' will return songs of ranks 40 through 26 starting with 40\n")
+
+                    print("Query examples: \n" +
+                          "'?: rank > {15}, rank < {35}, title is {Teenage Dream}, artist is {Katy Perry}' will return songs of ranks 15 through 35 with the title of Teenage Dream and the artist Katy Perry\n" +
+                          "'?: rank > {1}, rank < {40}' will return all songs in the dataset since the dataset only contains 40 songs\n" +
+                          "'?: rank > {34}, features is {True}' will return all songs ranked 34 and above with features\n")
+
                     
                     print("'exit': Used to exit out of the query program\n")
                     return None
