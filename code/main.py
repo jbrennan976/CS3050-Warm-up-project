@@ -1,5 +1,5 @@
 from Parser import interpret_query
-import query
+from query import query_db
 
 def main():
     print('Software Engineering Warm-Up Project')
@@ -12,6 +12,8 @@ def main():
         send_to_parser = user_input.split(',')
         send_to_query = interpret_query(send_to_parser)
         if send_to_query != None:
-            # use send_to_query in query.py
+            results = query_db(send_to_query)
             pass
-        # print(send_to_query)
+        for dict in results:
+            print(dict)
+    return
