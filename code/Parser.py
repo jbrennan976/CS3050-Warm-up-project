@@ -21,6 +21,7 @@ def interpret_query(query_args):
     # sets the query object
     query_contents = Query(None, None, None, None, False, True)
     for arg in query_args:
+        arg = arg.strip()
         field = (arg.split(' '))[0].lower() # which field is to be found
 
         if field == "help" or field == "exit" or field == "asc":
