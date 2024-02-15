@@ -90,7 +90,7 @@ def interpret_query(query_args):
 
                                     except:
                                         print("ERROR: MUST USE AN INTEGER FOR THIS VALUE")
-                                        break
+                                        return None
                                 else:
                                     print("ERROR: CANNOT GIVE TWO 'IS' VALUES FOR THE SAME FIELD")
                                     return None
@@ -139,6 +139,7 @@ def interpret_query(query_args):
                     
                     else:
                         print("ERROR: CANNOT GIVE TWO '<' VALUES FOR THE SAME FIELD")
+                        return None
 
                 # with the < and > tests, the field being tested will always be rank since that is the only numeric field
                 case '>':
@@ -155,6 +156,7 @@ def interpret_query(query_args):
                     
                     else:
                         print("ERROR: CANNOT GIVE TWO '>' VALUES FOR THE SAME FIELD")
+                        return None
                         
                 # To simplify the 'of' case, we'll say that the second term/arg will always be "title"
                 case 'of':
