@@ -53,6 +53,7 @@ def interpret_query(query_args):
                         "Example: '?: rank > \{15\}, asc' will return songs of ranks 40 through 26\n")
                     
                     print("'exit': Used to exit out of the query program\n")
+                    return None
                 
                 case 'exit':
                     print("Ending program")
