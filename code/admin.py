@@ -3,6 +3,7 @@ import json
 
 db = config.initFirestone()
 
+# used to define/create a song object
 class Song:
     def __init__(self, rank, artist, song, features, has_feature):
         self.rank = rank
@@ -20,11 +21,13 @@ class Song:
             "has_feature": self.has_feature
             }
 
+# clear the current data in the DB
 def clear_data():
     docs = db.collection("song_rankings").get()
     for doc in docs:
         doc.reference.delete()
 
+# get the filename to be referenced for data
 def get_filename():
     f = input("Please enter the name of the json file you would like to upload: ")
     while not(f.endswith(".json")):
@@ -32,6 +35,7 @@ def get_filename():
         f = input("Please enter the name of the json file you would like to upload: ")
     return f
 
+# upload the data using a .json file
 def upload_data():
     clear_data()
     filename = get_filename()
