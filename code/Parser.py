@@ -55,7 +55,7 @@ def interpret_query(query_args):
 
                     print("Query examples: \n" +
                           "'?: rank > {15}, rank < {35}, title is {Teenage Dream}, artist is {Katy Perry}' will return songs of ranks 15 through 35 with the title of Teenage Dream and the artist Katy Perry\n" +
-                          "'?: rank > {1}, rank < {40}' will return all songs in the dataset since the dataset only contains 40 songs\n" +
+                          "'?: rank > {1}, rank < {40}' will return all songs 1-40\n" +
                           "'?: rank > {34}, features is {True}' will return all songs ranked 34 and above with features\n")
 
                     
